@@ -31,20 +31,21 @@
             font-weight: 700;
         }
 
-        p {
-            margin: 0 0 32px;
+        .intro {
+            margin: 0 0 40px;
             color: #666;
         }
 
-        section + section {
-            margin-top: 28px;
+        .date-group + .date-group {
+            margin-top: 40px;
         }
 
         h2 {
             margin: 0 0 12px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
-            color: #444;
+            color: #888;
+            letter-spacing: 0.02em;
         }
 
         ul {
@@ -62,7 +63,10 @@
         }
 
         a {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
             padding: 14px 16px;
             color: #111;
             text-decoration: none;
@@ -71,52 +75,233 @@
         a:hover {
             background: #fafafa;
         }
+
+        .practice {
+            flex: 1;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .file {
+            flex-shrink: 0;
+            font-size: 13px;
+            color: #555;
+        }
     </style>
 </head>
 
 <body>
     <main>
         <h1>AIDCD2026 HTML+CSS</h1>
-        <p>프로젝트에 포함된 HTML 페이지 목록입니다.</p>
+        <p class="intro">프로젝트에 포함된 HTML 페이지 목록입니다.</p>
 
-        <section>
-            <h2>연습 파일</h2>
+        <section class="date-group">
+            <h2>2026.06.26</h2>
             <ul>
-                <li><a href="20260626.html">20260626.html</a></li>
-                <li><a href="20260629.html">20260629.html</a></li>
-                <li><a href="20260629-nike.html">20260629-nike.html</a></li>
-                <li><a href="20260630.html">20260630.html</a></li>
-                <li><a href="20260630-nike2.html">20260630-nike2.html</a></li>
-                <li><a href="20260701.html">20260701.html</a></li>
-                <li><a href="20260702.html">20260702.html</a></li>
-                <li><a href="20260702-2.html">20260702-2.html</a></li>
-                <li><a href="20260702-3.html">20260702-3.html</a></li>
-                <li><a href="20260703.html">20260703.html</a></li>
-                <li><a href="20260703-2.html">20260703-2.html</a></li>
-                <li><a href="20260706.html">20260706.html</a></li>
-                <li><a href="20260706-2.html">20260706-2.html</a></li>
-                <li><a href="20260707.html">20260707.html</a></li>
-                <li><a href="20260707-2.html">20260707-2.html</a></li>
-                <li><a href="20260708.html">20260708.html</a></li>
-                <li><a href="circle.html">circle.html</a></li>
-                <li><a href="sangse.html">sangse.html</a></li>
+                <li>
+                    <a href="20260626.html">
+                        <span class="practice">html 기초</span>
+                        <span class="file">20260626.html</span>
+                    </a>
+                </li>
             </ul>
         </section>
 
-        <section>
+        <section class="date-group">
+            <h2>2026.06.29</h2>
+            <ul>
+                <li>
+                    <a href="20260629.html">
+                        <span class="practice">div class와 input type</span>
+                        <span class="file">20260629.html</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="20260629-nike.html">
+                        <span class="practice">input type으로 나이키 회원가입 페이지 만들기</span>
+                        <span class="file">20260629-nike.html</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="date-group">
+            <h2>2026.06.30</h2>
+            <ul>
+                <li>
+                    <a href="20260630.html">
+                        <span class="practice">line height</span>
+                        <span class="file">20260630.html</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="20260630-nike2.html">
+                        <span class="practice">나이키 회원가입 실습 2</span>
+                        <span class="file">20260630-nike2.html</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="date-group">
+            <h2>2026.07.01</h2>
+            <ul>
+                <li>
+                    <a href="20260701.html">
+                        <span class="practice">EV6 KIA 실습</span>
+                        <span class="file">20260701.html</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="date-group">
+            <h2>2026.07.02</h2>
+            <ul>
+                <li>
+                    <a href="20260702.html">
+                        <span class="practice">block, inline-block, flex</span>
+                        <span class="file">20260702.html</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="20260702-2.html">
+                        <span class="practice">flex: justify와 align</span>
+                        <span class="file">20260702-2.html</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="20260702-3.html">
+                        <span class="practice">EV6 KIA 실습 2 (flex)</span>
+                        <span class="file">20260702-3.html</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="date-group">
+            <h2>2026.07.03</h2>
+            <ul>
+                <li>
+                    <a href="20260703.html">
+                        <span class="practice">Flex와 비율</span>
+                        <span class="file">20260703.html</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="20260703-2.html">
+                        <span class="practice">SOMC 실습</span>
+                        <span class="file">20260703-2.html</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="date-group">
+            <h2>2026.07.06</h2>
+            <ul>
+                <li>
+                    <a href="20260706.html">
+                        <span class="practice">Flex Wrap</span>
+                        <span class="file">20260706.html</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="20260706-2.html">
+                        <span class="practice">F.MILLER 실습 (flex wrap)</span>
+                        <span class="file">20260706-2.html</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="date-group">
+            <h2>2026.07.07</h2>
+            <ul>
+                <li>
+                    <a href="20260707.html">
+                        <span class="practice">hover 애니메이션</span>
+                        <span class="file">20260707.html</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="20260707-2.html">
+                        <span class="practice">hover 실습</span>
+                        <span class="file">20260707-2.html</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="date-group">
+            <h2>2026.07.08</h2>
+            <ul>
+                <li>
+                    <a href="20260708.html">
+                        <span class="practice">미디어태그 반응형 실습</span>
+                        <span class="file">20260708.html</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="date-group">
+            <h2>기타</h2>
+            <ul>
+                <li>
+                    <a href="circle.html">
+                        <span class="practice">원형 로딩바</span>
+                        <span class="file">circle.html</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="sangse.html">
+                        <span class="practice">상세페이지 실습 (자습)</span>
+                        <span class="file">sangse.html</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="date-group">
             <h2>3d_cube_sphere_test</h2>
             <ul>
-                <li><a href="3d_cube_sphere_test/3dtest.html">3dtest.html</a></li>
-                <li><a href="3d_cube_sphere_test/3dtest2.html">3dtest2.html</a></li>
-                <li><a href="3d_cube_sphere_test/3dtest3.html">3dtest3.html</a></li>
+                <li>
+                    <a href="3d_cube_sphere_test/3dtest.html">
+                        <span class="practice">3d 큐브</span>
+                        <span class="file">3dtest.html</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="3d_cube_sphere_test/3dtest2.html">
+                        <span class="practice">3d 큐브 2</span>
+                        <span class="file">3dtest2.html</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="3d_cube_sphere_test/3dtest3.html">
+                        <span class="practice">3d 큐브 (ASCII)</span>
+                        <span class="file">3dtest3.html</span>
+                    </a>
+                </li>
             </ul>
         </section>
 
-        <section>
+        <section class="date-group">
             <h2>font_weight_animation_test</h2>
             <ul>
-                <li><a href="font_weight_animation_test/font-weight-wave.html">font-weight-wave.html</a></li>
-                <li><a href="font_weight_animation_test/font-weight-wave_site_mockup.html">font-weight-wave_site_mockup.html</a></li>
+                <li>
+                    <a href="font_weight_animation_test/font-weight-wave.html">
+                        <span class="practice">폰트웨이트 웨이브효과</span>
+                        <span class="file">font-weight-wave.html</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="font_weight_animation_test/font-weight-wave_site_mockup.html">
+                        <span class="practice">폰트웨이트 웨이브효과 2</span>
+                        <span class="file">font-weight-wave_site_mockup.html</span>
+                    </a>
+                </li>
             </ul>
         </section>
     </main>

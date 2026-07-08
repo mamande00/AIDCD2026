@@ -1,0 +1,125 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Pretendard Variable", "Pretendard", "sans-serif";
+  color: #1E1E1E;
+  font-weight: 400;
+  letter-spacing: -5%;
+  background-color: #ffffff;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover, a:focus, a:visited, a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.header {
+  position: fixed;
+  display: flex;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid lightgray;
+  box-sizing: border-box;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 30px;
+  padding-bottom: 10px;
+  z-index: 100;
+  transition-duration: 0.4s;
+}
+.header:hover {
+  border-bottom: 1px solid gray;
+}
+.header .logo img {
+  height: 19px;
+  mix-blend-mode: difference;
+  transition-duration: 0.3s;
+}
+.header .logo img:hover {
+  transform: rotate(270deg) scale(1.2);
+}
+.header .mainmenu ul {
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.header .mainmenu ul li {
+  color: darkgrey;
+  transition-duration: 0.2s;
+}
+.header .mainmenu ul li:hover {
+  font-weight: 700;
+  color: black;
+}
+
+.concept_items {
+  margin-top: 120px;
+  margin-left: 30px;
+  margin-right: 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 9vw;
+}
+.concept_items .concept_item {
+  flex: 1;
+}
+.concept_items .concept_item .concept_img {
+  overflow: hidden;
+  border-radius: 4px;
+}
+.concept_items .concept_item img {
+  width: 100%;
+  display: block;
+  transition-duration: 0.5s;
+}
+.concept_items .concept_item img:hover {
+  transform: scale(1.1);
+}
+.concept_items .concept_item .concept_desc {
+  margin-top: 10px;
+}
+.concept_items .concept_item .concept_desc:hover {
+  text-decoration-line: underline;
+}
+
+@media (max-width: 600px) {
+  .header {
+    top: 15px;
+    height: 65px;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+  }
+  .concept_items {
+    margin-top: 140px;
+    flex-direction: column;
+  }
+  .concept_items img {
+    height: 200px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center 30%;
+       object-position: center 30%;
+    transition-duration: 1.2s;
+  }
+  .concept_items img:hover {
+    -o-object-position: center 60%;
+       object-position: center 60%;
+  }
+}/*# sourceMappingURL=20260708.css.map */

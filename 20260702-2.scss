@@ -1,0 +1,88 @@
+@use 'base';
+
+body {
+    color: #f2f2f2;
+    font-size: 2em;
+    text-align: center;
+    font-weight: 600;
+}
+
+.box {
+    height: 50px;
+    width: 50px;
+    background-color: seagreen;
+    border-radius: 0.5em;
+    display: inline-block;
+    box-sizing: border-box;
+    line-height: 50px;
+    padding-right: 1px;
+}
+
+.box_container {
+    background-color: linen;
+    height: 20vh;
+    gap: 10px;
+    padding: 20px;
+    display: flex;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+
+    &.ct1 {
+        /*&가 ".box_container"역할*/
+        justify-content: start;
+
+        .box {
+            background-color: maroon;
+        }
+
+    }
+}
+
+
+.box_container.ct2 {
+    /*띄어쓰기 없이 바로 .ct2가 붙으면: box_container와 ct2를 동시에 만족하는 요소에대한 스타일*/
+    /*만약 띄어쓰기가 있었으면 box_container 안에있는 ct2라는 요소를 지칭*/
+    justify-content: center;
+
+    .box {
+        background-color: midnightblue;
+    }
+}
+
+.box_container.ct3 {
+    justify-content: end;
+
+    .box {
+        background-color: darkorange;
+    }
+
+}
+
+.box_container.ct4 {
+    justify-content: space-between;
+
+    .box {
+        background-color: darkmagenta;
+    }
+
+}
+
+.box_container.ct5 {
+    justify-content: center;
+    align-items: center;
+
+    .box {
+        background-color: darkcyan;
+    }
+
+}
+
+.box_container.ct6 {
+    justify-content: end;
+    align-items: end;
+
+    .box {
+        background-color: black;
+    }
+
+}

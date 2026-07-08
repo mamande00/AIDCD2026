@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D 물리 큐브 시뮬레이션 (공간감 및 블렌딩 완성본)</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #F2F2F2; }
+        canvas { display: block; }
+        #info {
+            position: absolute; top: 10px; width: 100%; text-align: center;
+            color: #1e1e1e; font-family: sans-serif; pointer-events: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">큐브 선과의 앞뒤 관계가 완벽하게 표현됩니다!</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
+
+    <script>
+        const BALL_COUNT = 150;
+        const CUBE_SIZE = 8;
+
+        let scene, camera, renderer;
+        let world;
+        
+        let visualContainer; 
+        let physicsContainerBody;
+
+        const ballsVisual = [];
+        const ballsPhysical = [];
+
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+        
+        let rotationX = 0.5;
+        let rotationY = 0.5;
+        let clock;
+
+        initPhysics();
+        initGraphics();
+        createObjects();
+        animate();
+
+        function initPhysics() {
+            world = new CANNON.World();
+            world.gravity.set(0, -35, 0); 
+            world.broadphase = new CANNON.NaiveBroadphase();
+            world.solver.iterations = 12;
+
+            const defaultMaterial = new CANNON.Material("default");
+            const contactMaterial = new CANNON.ContactMaterial(defaultMaterial, defaultMaterial, {
+                friction: 0.3,
+                restitution: 0.05 
+            });
+            world.addContactMaterial(contactMaterial);
+        }
+
+        function initGraphics() {
+            scene = new THREE.Scene();
+            clock = new THREE.Clock();
+
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 4, 17); 
+            camera.lookAt(0, 0, 0);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setClearColor(0xF2F2F2, 1);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            window.addEventListener('resize', onWindowResize);
+            document.addEventListener('mousedown', () => isDragging = true);
+            document.addEventListener('mouseup', () => isDragging = false);
+            document.addEventListener('mousemove', handleMouseMove);
+        }
+
+        function createObjects() {
+            visualContainer = new THREE.Group();
+            scene.add(visualContainer);
+
+            // 1. 큐브 외곽선 생성 (공간 깊이를 확실하게 가질 불투명 오브젝트로 설정)
+            const cubeGeo = new THREE.BoxGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
+            const edgeGeo = new THREE.EdgesGeometry(cubeGeo);
+            const lineMat = new THREE.LineBasicMaterial({ 
+                color: 0x1e1e1e, 
+                linewidth: 2,
+                transparent: false,
+                depthTest: true,
+                depthWrite: true 
+            });
+            const cubeLines = new THREE.LineSegments(edgeGeo, lineMat);
+            
+            // 렌더오더를 0으로 설정하여 구슬보다 먼저 공간을 채우게 합니다.
+            cubeLines.renderOrder = 0; 
+            visualContainer.add(cubeLines);
+
+            // 물리 엔진 벽면 조립
+            physicsContainerBody = new CANNON.Body({
+                mass: 0, 
+                position: new CANNON.Vec3(0, 0, 0)
+            });
+
+            const half = CUBE_SIZE / 2;
+            const planeShape = new CANNON.Plane();
+
+            const walls = [
+                { pos: [0, -half, 0], rot: [-Math.PI / 2, 0, 0] },
+                { pos: [0, half, 0], rot: [Math.PI / 2, 0, 0] },
+                { pos: [-half, 0, 0], rot: [0, Math.PI / 2, 0] },
+                { pos: [half, 0, 0], rot: [0, -Math.PI / 2, 0] },
+                { pos: [0, 0, -half], rot: [0, 0, 0] },
+                { pos: [0, 0, half], rot: [Math.PI, 0, 0] }
+            ];
+
+            walls.forEach(w => {
+                const localPos = new CANNON.Vec3(...w.pos);
+                const localQuat = new CANNON.Quaternion();
+                localQuat.setFromEuler(...w.rot);
+                physicsContainerBody.addShape(planeShape, localPos, localQuat);
+            });
+            
+            world.addBody(physicsContainerBody);
+
+            // 2. 구슬 생성 설정
+            const ballRadius = 0.3;
+            const ballGeo = new THREE.SphereGeometry(ballRadius, 24, 24);
+
+            // 앞서 그려진 큐브 선과의 앞뒤를 구별하도록 재질 설정 수정
+            const ballMat = new THREE.MeshBasicMaterial({ 
+                color: 0xEA5C2A,
+                transparent: true,
+                opacity: 0.9,              
+                depthTest: true,           // 이미 그려진 큐브 선의 깊이 값을 확인해 앞뒤를 구별합니다.
+                depthWrite: false,          // 구슬끼리는 가리지 않고 투명하게 겹쳐지도록 깊이 버퍼 기록만 끕니다.
+                blending: THREE.CustomBlending,
+                blendEquation: THREE.AddEquation,
+                blendSrc: THREE.SrcAlphaFactor, // 선을 자연스럽게 덮기 위한 투명 알파 공식
+                blendDst: THREE.OneMinusSrcAlpha
+            });
+
+            for (let i = 0; i < BALL_COUNT; i++) {
+                const ballMesh = new THREE.Mesh(ballGeo, ballMat);
+                
+                // 큐브 선(0)이 다 그려진 후 투명 레이어처럼 위에 얹기 위해 오더를 올립니다.
+                ballMesh.renderOrder = 1; 
+                
+                scene.add(ballMesh);
+                ballsVisual.push(ballMesh);
+
+                const ballShape = new CANNON.Sphere(ballRadius); 
+                const ballBody = new CANNON.Body({
+                    mass: 8, 
+                    shape: ballShape,
+                    position: new CANNON.Vec3(
+                        (Math.random() - 0.5) * (CUBE_SIZE - 2.5),
+                        (Math.random() - 0.5) * (CUBE_SIZE - 2.0),
+                        (Math.random() - 0.5) * (CUBE_SIZE - 2.5)
+                    )
+                });
+                
+                ballBody.linearDamping = 0.25; 
+                ballBody.angularDamping = 0.25;
+
+                world.addBody(ballBody);
+                ballsPhysical.push(ballBody);
+            }
+        }
+
+        function handleMouseMove(e) {
+            if (isDragging) {
+                const deltaX = e.offsetX - previousMousePosition.x;
+                const deltaY = e.offsetY - previousMousePosition.y;
+
+                rotationY += deltaX * 0.007;
+                rotationX += deltaY * 0.007;
+            }
+            previousMousePosition = { x: e.offsetX, y: e.offsetY };
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const delta = clock.getDelta();
+            world.step(1 / 60);
+
+            if (!isDragging) {
+                rotationX += ((2 * Math.PI) / 10) * delta; // X축 10초에 한 바퀴
+                rotationY += ((2 * Math.PI) / 40) * delta; // Y축 40초에 한 바퀴
+            }
+
+            const quatX = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), rotationX);
+            const quatY = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), rotationY);
+            const combinedQuat = new THREE.Quaternion().multiplyQuaternions(quatY, quatX);
+
+            visualContainer.quaternion.copy(combinedQuat);
+            physicsContainerBody.quaternion.copy(combinedQuat);
+
+            for (let i = 0; i < BALL_COUNT; i++) {
+                ballsVisual[i].position.copy(ballsPhysical[i].position);
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+    </script>
+</body>
+</html>

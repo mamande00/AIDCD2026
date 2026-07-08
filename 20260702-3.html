@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="20260702-3.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="./img/logo_0701.svg" alt="logo">
+        </div>
+        <div class="main_menu">
+            <ul>
+                <li>ABOUT</li>
+                <li>WORK</li>
+            </ul>
+        </div>
+    </div>
+    <div class="main">
+        <div class="wave-title">
+            <h1 id="wave-title">EV6 KIA</h1>
+        </div>
+    </div>
+    <script>
+        const textTarget = document.getElementById('wave-title');
+        const originalText = textTarget.innerText;
+
+        textTarget.innerHTML = originalText
+            .split('')
+            .map((char, index) => {
+                // 0.2초씩 딜레이 생성
+                const delay = (index * 0.2).toFixed(1);
+                return `<span style="animation-delay: ${delay}s">${char}</span>`;
+            })
+            .join('');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .svg-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        svg {
+            /* 중요: SVG 원은 기본적으로 3시 방향에서 시작하므로, 전체를 -90도 회전해 12시 방향으로 맞춥니다 */
+            transform: rotate(-90deg);
+        }
+
+        circle {
+            fill: none;
+            stroke-width: 15px;
+            /* 선 두께 */
+        }
+
+        .bg-circle {
+            stroke: #e0e0e0;
+        }
+
+        .fg-circle {
+            stroke: #00ffaa;
+            stroke-linecap: round;
+            /* 선 끝부분을 둥글게 처리 */
+
+            /* 반지름 70 기준 총 둘레: 2 * 3.14159 * 70 = 439.82 (약 440) */
+            stroke-dasharray: 440;
+
+            /* 대시 오프셋을 계산하여 선을 깎아 나가는 방식 */
+            stroke-dashoffset: calc(440 - (440 * var(--percent)) / 100);
+        }
+
+        .percent-text {
+            position: absolute;
+            font-family: sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 원 둘레(2 * π * r) 계산: 반지름(r)이 70이면 둘레는 약 440입니다 -->
+    <div class="svg-container">
+        <svg width="160" height="160" viewBox="0 0 160 160">
+            <!-- 배경 회색 원 -->
+            <circle class="bg-circle" cx="80" cy="80" r="70" />
+            <!-- 실제 차오르는 원 (변수로 퍼센트 제어) -->
+            <circle class="fg-circle" cx="80" cy="80" r="70" style="--percent: 75;" />
+        </svg>
+        <span class="percent-text">15%</span>
+    </div>
+</body>
+
+</html>

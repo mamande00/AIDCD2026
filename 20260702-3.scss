@@ -1,0 +1,74 @@
+@use 'base';
+
+
+
+.header {
+    position: fixed;
+    left: 20px;
+    right: 20px;
+    /*left와 right를 둘다 지정하면 width값 없이도 깔끔히 지정이 된다*/
+    top: 15px;
+    /*width: calc(100vw - 40px); <<<< 이런식으로 calc 기능 사용해서 서로다른 단위도 계산 가능, 띄어쓰기 중요*/
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: difference;
+
+    ul {
+        display: flex;
+        
+    }
+
+    .logo img {
+        height: 19px;
+    }
+}
+
+
+li {
+    color: white;
+
+}
+
+.main {
+    height: 100vh;
+    background-image: url(./img/bg_0701.png);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .wave-title {
+        h1 {
+            font-size: 16vw;
+            color: white;
+            font-weight: 100;
+            letter-spacing: -1%;
+            display: flex;
+
+            span {
+                display: inline-block;
+                /*width:10vw;*/
+                text-align:center;
+                /* 💡 작성하셨던 5초 사이클 그대로 세팅 */
+                animation: wave-weight 5s ease-in-out infinite;
+            }
+        }
+        @keyframes wave-weight {
+            0% {
+                font-weight: 100;
+            }
+
+            50% {
+                font-weight: 900;
+                /* 중간 지점에서 가장 굵어짐 */
+            }
+
+            100% {
+                font-weight: 100;
+            }
+        }
+
+    }
+
+}

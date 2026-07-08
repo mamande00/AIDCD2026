@@ -1,0 +1,64 @@
+@use 'base';
+
+html,
+body {
+    cursor: url(./img/svg/roundcursor.svg) 2.1 2.1, auto;
+
+}
+
+.bonmun:hover {
+    color: slateblue
+}
+
+.container {
+    display: flex;
+
+    gap: 30px;
+
+}
+
+.box {
+    height: 100px;
+    width: 100px;
+    background-color: black;
+    transition-duration: 0.3s;
+
+    &.a1:hover {
+        background-image: url(./img/plush.png);
+        background-size: cover;
+        background-position: center;
+    }
+
+    &.a2:hover {
+        transform:scale(1.1);
+        border-radius:20%;
+    }
+
+    &.a3:hover {
+        transform: rotate(360deg) scale(0.8);
+        border-radius:50%;
+        background-color:darkblue;
+        opacity:50%;
+    }
+
+    &.a4:hover {
+        transform: scale(0.5);
+        border-radius:50%;
+    }
+}
+
+.box:nth-child(1):hover {
+    background-color: red;
+}
+
+.box:nth-child(2):hover {
+    transform: translate(0, 50px);
+}
+
+.box:nth-child(3):hover {
+    transform: rotate(45deg);
+}
+
+.box:nth-child(4):hover {
+    transform: scale(1.5);
+}

@@ -1,0 +1,33 @@
+@charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Pretendard", "sans-serif";
+  letter-spacing: -5%;
+  background-color: white;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: mediumslateblue;
+  /*display:inline-block;*/
+}
+
+/*inline-block은 필연적으로 발생하는 요소 사이의 여백으로 인해 정교한 디자인에 불리 */
+.container {
+  display: flex;
+  width: 1000px;
+  height: 400px;
+  border: 2px solid gray;
+  justify-content: space-between;
+  /* space-between이 단락정렬의 justify와 비슷 (왼쪽오른쪽 정렬에 나머지는 균일간격)*/
+  align-items: center;
+  /*어떤건 content, 어떤건 items, 일관되지 않으니 외워야 함. J-C, A-I */
+  gap: 10px;
+  /*space-between을 하면 gap은 아무것도 안 함*/
+  /*만약 space-between을 세로로 하고싶다? 그럼 flex의 주축을 세로로 바꾸어야함: ###flex-direction: column;### */
+}
+
+/*flex는 나열하려는 요소들에가 아니라 그 요소들을 감싸주는 **부모요소**에 적용해야함--피그마 오토레이아웃처럼*//*# sourceMappingURL=20260702.css.map */

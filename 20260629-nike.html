@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .join {
+            width: 400px;
+            margin: 0px auto;
+
+            /* 1. 폰트 종류 설정 */
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+
+            /* 2. 글자 크기 설정 */
+            font-size: 1rem;
+
+            /* 3. 글자 두께 설정 (normal, bold 또는 100~900 숫자) */
+            font-weight: 400;
+
+            /* 4. 글자 자간(간격) 설정 (필요할 때 사용) */
+            letter-spacing: -4%;
+
+            /* 기존에 설정한 패딩과 함께 쓰면 정돈된 인풋이 됩니다 */
+            padding: 0.8rem 1rem;
+        }
+
+        .logo {
+            width: 200px;
+            margin: 0px auto;
+        }
+
+        .logo img {
+            width: 100%;
+        }
+
+        .title {
+            margin-top: 40px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            line-height: 140%;
+        }
+
+        .description {
+            margin-top: 5px;
+            color: gray;
+        }
+
+        .input_items {
+            margin-top: 10px;
+        }
+
+        .input_items input {
+            width: 100%;
+            height: 50px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 0.5px solid gray;
+            box-sizing: border-box
+        }
+
+        .input_items select {
+            width: 400px;
+            height: 50px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 0.5px solid gray;
+            box-sizing: border-box
+        }
+
+        .input_items ::placeholder {
+            font-size: 0.9rem;
+        }
+
+        .agree label {
+            font-size: medium;
+            font-weight: 200;
+            color: gray;
+            line-height: 140%;
+        }
+
+        .agree input {
+            margin-top: 20px;
+            transform: scale(1.5);
+        }
+
+        .input_items input[type="button"] {
+            border: 1px, solid, darkgray;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="join">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg">
+        </div>
+        <div class="title">나이키 회원가입</div>
+        <div class="description">회원가입을 위해 아래 항목을 입력해주세요.</div>
+        <div class="input_items">
+            <input type="text" placeholder="아이디" />
+        </div>
+        <div class="input_items">
+
+            <input type="password" placeholder="비밀번호는 8-16자 안으로 입력해주세요." />
+        </div>
+        <div class="input_items">
+
+            <input type="password" placeholder="비밀번호 확인" />
+        </div>
+        <div class="input_items">
+            <input type="text" placeholder="이름" />
+        </div>
+        <div class="input_items">
+            <input type="email" placeholder="이메일" />
+        </div>
+        <div class="input_items">
+            <select name="성별" />
+            <option value="male">남자</option>
+            <option value="female">여자</option>
+            <option value="other">그 외</option>
+            </select>
+        </div>
+        <div class="agree">
+            <label>
+                <input type="checkbox" /> &nbsp; 약관에 동의합니다. </label>
+        </div>
+        <div class="input_items">
+            <input type="button" value="회원가입" />
+        </div>
+    </div>
+</body>
+
+</html>

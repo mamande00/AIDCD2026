@@ -1,0 +1,78 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Pretendard Variable", "Pretendard", "sans-serif";
+  color: #1E1E1E;
+  font-weight: 400;
+  letter-spacing: -5%;
+  background-color: #ffffff;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover, a:focus, a:visited, a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  padding-top: 10px;
+  background-color: black;
+}
+.container.c4 {
+  padding-bottom: 10px;
+}
+
+.section {
+  height: 25vh;
+}
+.section.s1 {
+  background-color: cadetblue;
+  flex: 1;
+}
+.section.s2 {
+  background-color: sandybrown;
+}
+.section.s3 {
+  background-color: cornflowerblue;
+  flex: 1;
+}
+.section.s4 {
+  background-color: chocolate;
+  flex: 4;
+}
+.section.s5 {
+  background-color: sandybrown;
+  flex: 6;
+}
+.section.s6 {
+  background-color: coral;
+  flex: 1;
+}
+.section.s7 {
+  background-color: violet;
+  flex: 9;
+}
+.section.s8 {
+  background-color: cadetblue;
+  flex: 1;
+}
+.section.s9 {
+  background-color: cornflowerblue;
+  flex: 1;
+}
+.section.s0 {
+  background-color: lavender;
+  flex: 1;
+}/*# sourceMappingURL=20260703.css.map */

@@ -1,0 +1,56 @@
+@use 'base';
+
+.container{
+    display:flex;
+    padding-top:10px;
+    background-color: black;
+    &.c4{
+        padding-bottom:10px;
+    }
+}
+.section {
+    height: 25vh;
+
+    &.s1 {
+        background-color: cadetblue;
+        flex: 1;
+    }
+
+    &.s2 {
+        background-color: sandybrown;
+        
+    }
+
+    &.s3 {
+        background-color: cornflowerblue;
+        flex: 1;
+    }
+    &.s4{
+        background-color: chocolate;
+        flex: 4;
+    }
+    &.s5{
+        background-color: sandybrown;
+        flex:6;
+    }
+    &.s6{
+        background-color: coral;
+        flex:1;
+    }
+    &.s7{
+        background-color: violet;
+        flex:9;
+    }
+    &.s8{
+        background-color: cadetblue;
+        flex:1;
+    }
+    &.s9{
+        background-color: cornflowerblue;
+        flex:1;
+    }
+    &.s0{
+        background-color: lavender;
+        flex:1;
+    }
+}

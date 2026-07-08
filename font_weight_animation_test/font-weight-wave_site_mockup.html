@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+        body {
+            font-family: 'Outfit', 'sans-serif';
+            /* 페이지 전체 배경색 */
+            background-color: #EA5C2A;
+            /* 글자 색상 세트 */
+            color: #1E1E1E;
+            /* 브라우저 기본 여백 제거 */
+            margin: 0;
+        }
+
+        .wave-title {
+            font-family: 'Outfit', 'sans-serif';
+            font-size: 10vw;
+            letter-spacing: -5%;
+            font-weight: 100;
+            color: #1E1E1E;
+
+            display: flex;
+            justify-content: center;
+            /* 글자 바닥선 고정 */
+            align-items: flex-end;
+        }
+
+        /* 타이틀 안의 각 글자(span)에 애니메이션 적용 */
+        .wave-title span {
+            display: inline-block;
+            /* 💡 작성하셨던 5초 사이클 그대로 세팅 */
+            animation: wave-weight 5s ease-in-out infinite;
+        }
+
+        /* 100에서 900으로 갔다가 다시 100으로 돌아오는 애니메이션 */
+        @keyframes wave-weight {
+            0% {
+                font-weight: 100;
+            }
+
+            50% {
+                font-weight: 900;
+                /* 중간 지점에서 가장 굵어짐 */
+            }
+
+            100% {
+                font-weight: 100;
+            }
+        }
+
+        .title_desc {
+            margin-top: -8vw;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2vw;
+            font-weight: 500;
+            text-align: center;
+            color: #f2f2f2;
+        }
+
+        .main {
+            background-color: #f2f2f2;
+            margin: 2vw auto;
+            height: 60vh;
+            width: 60vw;
+            box-sizing: border-box;
+            border-radius: 55px;
+        }
+
+        .main .logo {
+            position: absolute;
+            display: inline-block;
+            height: 20px;
+            top: 20px;
+            left: 20px;
+            vertical-align: middle;
+        }
+
+        .logo img {
+            height: 19px;
+            color: #1E1E1E;
+        }
+
+        ul {
+            position: relative;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+
+        }
+
+        li {
+            position:relative;
+            top:20px;
+            right:30px;
+            display: inline-block;
+            margin-left: 30px;
+            font-size: 1em;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="wave-title" id="wave-text">wazazak</h1>
+
+    <div class="title_desc">game studio</div>
+
+    <!-- span 쪼개기 스크립트 -->
+    <script>
+        const textTarget = document.getElementById('wave-text');
+        const originalText = textTarget.innerText;
+
+        textTarget.innerHTML = originalText
+            .split('')
+            .map((char, index) => {
+                // 0.2초씩 딜레이 생성
+                const delay = (index * 0.2).toFixed(1);
+                return `<span style="animation-delay: ${delay}s">${char}</span>`;
+            })
+            .join('');
+    </script>
+    <div class="main">
+        <div class="logo">
+            <img src="./img/wzz.svg" />
+        </div>
+        <ul>
+            <li>ABOUT</li>
+            <li>PROJECTS</li>
+            <li>BLOG</li>
+        </ul>
+    </div>
+</body>
+
+</html>

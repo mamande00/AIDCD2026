@@ -1,0 +1,75 @@
+@use 'base';
+html, body {
+    cursor: url(./img/svg/blackcursor.svg) 0 0, auto;
+
+}
+body {
+    background-color: white;
+
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100vw - 60px);
+    margin: 0 auto;
+    padding-top: 10px;
+    right: 30px;
+
+    .logo img {
+        height: 20px;
+    }
+
+    ul {
+        font-size: 22px;
+        font-weight: 550;
+        line-height: 100%;
+        display: flex;
+        gap: 24px;
+    }
+}
+
+.hero {
+    font-size: 6vw;
+    font-weight: 700;
+    line-height: 0.85em;
+    padding-top: 25vh;
+    padding-top: clamp(80px, 2.4em, 25vh);
+
+    .title {
+        padding-left: 30px;
+        padding-right: 30px;
+        box-sizing: border-box;
+        align-items: end;
+    }
+
+    .indent {
+        margin-left: 1.2em;
+    }
+}
+
+.subtitle {
+    display: block;
+    font-size: 22px;
+    font-weight: 550;
+    padding-top: clamp(40px, 15vw ,18vh);
+    padding-left: 30px;
+    padding-right: 30px;
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+    }
+}
+
+.heroimage {
+    
+    margin: 0;
+    background-image: url(./img/back_img.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    cursor: url(./img/svg/whitecursor.svg) 10 10, auto;
+
+
+}
